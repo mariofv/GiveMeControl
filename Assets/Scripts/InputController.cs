@@ -17,6 +17,10 @@ public class InputController : MonoBehaviour
     void Update()
     {
         bodyController.SetMovement(Input.GetAxisRaw("Horizontal"));
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            bodyController.Jump();
+        }
         
     }
 }

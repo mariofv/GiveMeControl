@@ -7,10 +7,14 @@ public class BodyController : MonoBehaviour
     public Animator bodyAnimator;
     public SpriteRenderer bodySprite;
     public Rigidbody2D body;
-    public float speed = 0;
+    public float movementSpeed = 0;
+    public float jumpSpeed = 0;
 
     [SerializeField]
     private float movement = 0;
+    [SerializeField]
+    private bool jumping = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +25,10 @@ public class BodyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        bodyAnimator.SetBool("Falling", body.velocity.y < 0);
-        body.position += Vector2.right * Time.deltaTime * speed * movement;
+        jumping = body.velocity.y > 0;
+        bodyAnimator.SetBool("Jumping", jumping);
+        bodyAnimator.SetBool("Falling", body.velocity.y < -0.1);
+        body.position += Vector2.right * Time.deltaTime * movementSpeed * movement;
     }
 
     public void SetMovement(float movement)
@@ -39,4 +45,12 @@ public class BodyController : MonoBehaviour
         }
     }
 
+    public void Jump()
+    {
+        if (body.velocity.y == 0)
+        {
+            jumping = true;
+            body.velocity += Vector2.up * jumpSpeed;
+        }
+    }
 }
