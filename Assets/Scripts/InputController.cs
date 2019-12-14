@@ -25,6 +25,11 @@ public class InputController : MonoBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameController.instance.RestartLevel();
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             playerSelectorController.SetNextPlayer();

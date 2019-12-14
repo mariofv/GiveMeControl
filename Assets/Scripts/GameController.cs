@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -38,15 +39,32 @@ public class GameController : MonoBehaviour
         
     }
 
-    public void TogglePauseGameMenu()
+    public void RestartLevel()
     {
-        TogglePauseGame();
-        uiController.ShowPauseMenu(gamePaused);
+        LoadLevel(currentLevel);
+
     }
 
     public void LevelCompleted()
     {
         uiController.ShowCompletedLevelScreen(currentLevel);
+    }
+
+    private void LoadLevel(int level)
+    {
+        currentLevel = level;
+        SceneManager.LoadScene("Level " + level);
+
+        if (gamePaused)
+        {
+            TogglePauseGame();
+        }
+    }
+
+    public void TogglePauseGameMenu()
+    {
+        TogglePauseGame();
+        uiController.ShowPauseMenu(gamePaused);
     }
 
     private void TogglePauseGame()
