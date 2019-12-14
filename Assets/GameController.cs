@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController instance = null;
+    //Awake is always called before any Start functions
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public UIController uiController;
+
+    [SerializeField]
+    private int currentLevel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +33,10 @@ public class GameController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void LevelCompleted()
+    {
+        uiController.ShowCompletedLevelScreen(currentLevel);
     }
 }
