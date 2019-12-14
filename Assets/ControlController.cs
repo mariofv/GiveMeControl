@@ -16,10 +16,29 @@ public class ControlController : MonoBehaviour
     public float launchStartingDistance;
     public float initialLaunchForce = 0;
 
+    [Header("Control Attributes")]
     public bool rightAvailable = true;
     public bool leftAvailable = true;
     public bool jumpAvailable = true;
-    
+
+    [Header("Display Control Attributes")]
+
+    public SpriteRenderer rightControlRenderer;
+    public Sprite rightAvailableSprite;
+    public Sprite rightNotAvailableSprite;
+
+    [Space(10)] // 10 pixels of spacing here.
+
+    public SpriteRenderer leftControlRenderer;
+    public Sprite leftAvailableSprite;
+    public Sprite leftNotAvailableSprite;
+
+    [Space(10)] // 10 pixels of spacing here.
+
+    public SpriteRenderer jumpControlRenderer;
+    public Sprite jumpAvailableSprite;
+    public Sprite jumpNotAvailableSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +47,9 @@ public class ControlController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        rightControlRenderer.sprite = rightAvailable ? rightAvailableSprite : rightNotAvailableSprite;
+        leftControlRenderer.sprite = leftAvailable ? leftAvailableSprite : leftNotAvailableSprite;
+        jumpControlRenderer.sprite = jumpAvailable ? jumpAvailableSprite : jumpNotAvailableSprite;
     }
 
     public bool IsAvailable(ControlType controlType)
