@@ -8,6 +8,9 @@ public class UIController : MonoBehaviour
     [Header("Pause Menu")]
     public GameObject pauseMenuPanel;
 
+    [Header("Controls")]
+    public GameObject controlsPanel;
+
     [Header("Level Completed")]
     public GameObject levelCompletedPanel;
     public Text levelCompletedText;
@@ -33,5 +36,14 @@ public class UIController : MonoBehaviour
     public void ShowPauseMenu(bool active)
     {
         pauseMenuPanel.SetActive(active);
+        if (!active)
+        {
+            controlsPanel.SetActive(false);
+        }
+    }
+
+    public void ShowControlsMenu(bool active)
+    {
+        controlsPanel.SetActive(active);
     }
 }
