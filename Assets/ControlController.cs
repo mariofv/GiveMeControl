@@ -62,6 +62,12 @@ public class ControlController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateAvailableControls();
+        UpdateSelectedControl();
+    }
+
+    private void UpdateAvailableControls()
+    {
         rightControlRenderer.sprite = rightAvailable ? rightAvailableSprite : rightNotAvailableSprite;
         leftControlRenderer.sprite = leftAvailable ? leftAvailableSprite : leftNotAvailableSprite;
         jumpControlRenderer.sprite = jumpAvailable ? jumpAvailableSprite : jumpNotAvailableSprite;
@@ -69,7 +75,10 @@ public class ControlController : MonoBehaviour
         availableControl[0] = rightAvailable;
         availableControl[1] = leftAvailable;
         availableControl[2] = jumpAvailable;
+    }
 
+    private void UpdateSelectedControl()
+    {
         if (selectedControlInt == 0)
         {
             selectedControl = ControlType.RIGHT;
