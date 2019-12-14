@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2738832424687191147}
   - component: {fileID: 2738832424687191146}
   - component: {fileID: 2738832423922869282}
+  - component: {fileID: 8726980436217939189}
   m_Layer: 0
   m_Name: Adventurer
   m_TagString: Player
@@ -209,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3b69d6349550849ac4b443c5b13fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adventurerController: {fileID: 8726980436217939189}
   controlPrefab: {fileID: 1024685279067286794, guid: 01f3c39d2fb259444a3a0f33a8f3d3b1,
     type: 3}
   launchStartingDistance: 0.75
@@ -234,6 +236,22 @@ MonoBehaviour:
     type: 3}
   jumpNotAvailableSprite: {fileID: 21300000, guid: 96421051b5a5aa743a4c4a496d5e379d,
     type: 3}
+--- !u!114 &8726980436217939189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738832424687191137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd97fc90e181194e8181faa8d1e75ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedPlayerDisplay: {fileID: 7622138920356528736}
+  playerInputController: {fileID: 2738832424687191148}
+  bodyController: {fileID: 2738832424687191149}
+  selected: 0
 --- !u!1001 &3047694657598714481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -419,6 +437,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78556f7a8dc197f4ca2b098c578f654b, type: 3}
+--- !u!1 &7622138920356528736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1366456044866132603, guid: 78556f7a8dc197f4ca2b098c578f654b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8877129772248438811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &327707097023962545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9204752498921129386, guid: 78556f7a8dc197f4ca2b098c578f654b,

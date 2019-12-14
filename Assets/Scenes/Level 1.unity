@@ -177,16 +177,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 5}
   m_EdgeRadius: 0
---- !u!114 &319130261 stripped
+--- !u!114 &319130265 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2738832424687191148, guid: 47b64f7256c259246b971a0b59bb5b7d,
+  m_CorrespondingSourceObject: {fileID: 8726980436217939189, guid: 47b64f7256c259246b971a0b59bb5b7d,
     type: 3}
   m_PrefabInstance: {fileID: 2738832423955556647}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60463129bc3a7e2418259d89b2fccdf6, type: 3}
+  m_Script: {fileID: 11500000, guid: ebd97fc90e181194e8181faa8d1e75ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &327199772
@@ -594,12 +594,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdc6c5de8ee3a146b90a7edd3fdaad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedPlayerDisplays:
-  - {fileID: 1201650496}
-  - {fileID: 1324104919}
-  playerInputControllers:
-  - {fileID: 319130261}
-  - {fileID: 2738832423573369547}
+  adventurerControllers:
+  - {fileID: 319130265}
+  - {fileID: 2738832423573369550}
   currentSelectedPlayer: 0
 --- !u!114 &893062355
 MonoBehaviour:
@@ -628,12 +625,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1201650496 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7622138920356528736, guid: 47b64f7256c259246b971a0b59bb5b7d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2738832423955556647}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1321195879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,12 +1055,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1324104919 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6034841171608027268, guid: 5333a92fb843804409e409217ad91eb5,
-    type: 3}
-  m_PrefabInstance: {fileID: 4416796611647808327}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1555890739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,16 +1309,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2769906aef279874a9ecf6f39a551799, type: 3}
---- !u!114 &2738832423573369547 stripped
+--- !u!114 &2738832423573369550 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1966336401226273164, guid: 5333a92fb843804409e409217ad91eb5,
+  m_CorrespondingSourceObject: {fileID: 3630327691958834105, guid: 5333a92fb843804409e409217ad91eb5,
     type: 3}
   m_PrefabInstance: {fileID: 4416796611647808327}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60463129bc3a7e2418259d89b2fccdf6, type: 3}
+  m_Script: {fileID: 11500000, guid: ebd97fc90e181194e8181faa8d1e75ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2738832423955556647

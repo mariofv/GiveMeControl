@@ -11,6 +11,8 @@ public class ControlController : MonoBehaviour
         JUMP = 2
     }
 
+    public AdventurerController adventurerController;
+
     [Header("Launching Attributes")]
     public GameObject controlPrefab;
     public float launchStartingDistance;
@@ -72,7 +74,7 @@ public class ControlController : MonoBehaviour
         leftSelectedControlDisplay.SetActive(false);
         jumpSelectedControlDisplay.SetActive(false);
 
-        if (!IsThereAvailableControl() || !IsSelectedControlAvailable())
+        if (!IsThereAvailableControl() || !IsSelectedControlAvailable() ||!adventurerController.IsSelectedAdventurer())
         {
             return;
         }

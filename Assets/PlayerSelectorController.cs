@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerSelectorController : MonoBehaviour
 {
-    [Header("Player attributes")]
-    public List<GameObject> selectedPlayerDisplays;
-    public List<PlayerInputController> playerInputControllers;
+    public List<AdventurerController> adventurerControllers;
 
     [SerializeField]
     private int currentSelectedPlayer = 0;
@@ -20,11 +18,10 @@ public class PlayerSelectorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < selectedPlayerDisplays.Count; ++i)
+        for (int i = 0; i < adventurerControllers.Count; ++i)
         {
             
-            selectedPlayerDisplays[i].SetActive(i == currentSelectedPlayer);
-            playerInputControllers[i].enabled = i == currentSelectedPlayer;
+            adventurerControllers[i].SetActiveAdventurer(i == currentSelectedPlayer);
         }
     }
 
@@ -32,7 +29,7 @@ public class PlayerSelectorController : MonoBehaviour
     {
         if (currentSelectedPlayer - 1 == -1)
         {
-            currentSelectedPlayer = selectedPlayerDisplays.Count - 1;
+            currentSelectedPlayer = adventurerControllers.Count - 1;
         }
         else
         {
@@ -42,7 +39,7 @@ public class PlayerSelectorController : MonoBehaviour
 
     public void SetNextPlayer()
     {
-        if (currentSelectedPlayer + 1 == selectedPlayerDisplays.Count)
+        if (currentSelectedPlayer + 1 == adventurerControllers.Count)
         {
             currentSelectedPlayer = 0;
         }
