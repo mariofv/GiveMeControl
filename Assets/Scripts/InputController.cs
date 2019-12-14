@@ -24,7 +24,6 @@ public class InputController : MonoBehaviour
         {
             bodyController.Jump();
         }
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             bodyController.StartCharging();

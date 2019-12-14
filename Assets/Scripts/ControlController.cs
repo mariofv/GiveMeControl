@@ -8,8 +8,7 @@ public class ControlController : MonoBehaviour
     {
         RIGHT = 0,
         LEFT = 1,
-        JUMP = 2,
-        NONE = -1
+        JUMP = 2
     }
 
     [Header("Launching Attributes")]
@@ -62,11 +61,6 @@ public class ControlController : MonoBehaviour
         rightControlRenderer.sprite = availableControls[(int)ControlType.RIGHT] ? rightAvailableSprite : rightNotAvailableSprite;
         leftControlRenderer.sprite = availableControls[(int)ControlType.LEFT] ? leftAvailableSprite : leftNotAvailableSprite;
         jumpControlRenderer.sprite = availableControls[(int)ControlType.JUMP] ? jumpAvailableSprite : jumpNotAvailableSprite;
-    }
-
-    public bool IsThereAvailableControl()
-    {
-        return availableControls.Contains(true);
     }
 
     private void UpdateSelectedControl()
@@ -176,6 +170,11 @@ public class ControlController : MonoBehaviour
         return availableControls[(int)controlType];
     }
 
+    public bool IsThereAvailableControl()
+    {
+        return availableControls.Contains(true);
+    }
+    
     public bool IsSelectedControlAvailable()
     {
         return availableControls[(int)selectedControl];
@@ -183,11 +182,7 @@ public class ControlController : MonoBehaviour
 
     private ControlType IntToControlType(int intControlType)
     {
-        if (intControlType == -1)
-        {
-            return ControlType.NONE;
-        }
-        else if (intControlType == 0)
+        if (intControlType == 0)
         {
             return ControlType.RIGHT;
         }
@@ -200,6 +195,6 @@ public class ControlController : MonoBehaviour
             return ControlType.JUMP;
         }
 
-        return ControlType.NONE;
+        return ControlType.RIGHT;
     }
 }
