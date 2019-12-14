@@ -21,6 +21,11 @@ public class BodyController : MonoBehaviour
     public Texture2D defaultCursor;
     public Texture2D chargingCursor;
 
+    [Header("Launching Attributes")]
+    public GameObject controlPrefab;
+    public float launchStartingDistance;
+    public float initialLaunchForce = 0;
+
     [Header("Charge Bar Attributes")]
     public ChargeBar chargeBar;
     public float maxChargeTime = 0;
@@ -103,13 +108,26 @@ public class BodyController : MonoBehaviour
         }
     }
 
-    public void EndCharging()
+    public void EndCharging(Vector2 mousePosition)
     {
         if (charging)
         {
             charging = false;
-            Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
             chargeBar.transform.gameObject.SetActive(false);
+            LaunchControl(mousePosition);
         }
+    }
+
+    public void LaunchControl(Vector2 mousePosition)
+    {
+        Vector2 directionToMouse = (Camera.main.ScreenToWorldPoint(mousePosition) - transform.position).normalized;
+        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
+        Vector3 initialLaunchOffset = directionToMouse * launchStartingDistance;
+        Vector3 initialLaunchPosition = transform.position + initialLaunchOffset;
+
+        GameObject instantiatedControl = Instantiate(controlPrefab, initialLaunchPosition, Quaternion.identity);
+
+        float forceMultiplier = initialLaunchForce * Mathf.Lerp(0.75f, 1, currentCharge);
+        instantiatedControl.GetComponent<Rigidbody2D>().AddForce(directionToMouse * initialLaunchForce * currentCharge);
     }
 }

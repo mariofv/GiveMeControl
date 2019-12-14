@@ -28,7 +28,7 @@ public class InputController : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            bodyController.EndCharging();
+            bodyController.EndCharging(Input.mousePosition);
         }
 
     }
