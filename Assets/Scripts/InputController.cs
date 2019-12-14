@@ -6,6 +6,7 @@ public class InputController : MonoBehaviour
 {
 
     public BodyController bodyController;
+    public ControlController controlController;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,8 @@ public class InputController : MonoBehaviour
     void Update()
     {
         bodyController.SetMovement(Input.GetAxisRaw("Horizontal"));
+        controlController.SetSelectedControl(Input.GetAxis("Mouse ScrollWheel"));
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             bodyController.Jump();

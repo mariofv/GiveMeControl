@@ -1080,6 +1080,11 @@ PrefabInstance:
       propertyPath: controlController
       value: 
       objectReference: {fileID: 1041222917}
+    - target: {fileID: 7677889149224111928, guid: 8f85df459dcfd8d48823e2223053a42f,
+        type: 3}
+      propertyPath: controlController
+      value: 
+      objectReference: {fileID: 1041222917}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f85df459dcfd8d48823e2223053a42f, type: 3}
 --- !u!1001 &8108909347871098120
@@ -1188,6 +1193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108909348627947588, guid: d372acdc49012c747973060e7c898d5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d372acdc49012c747973060e7c898d5a, type: 3}

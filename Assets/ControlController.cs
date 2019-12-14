@@ -101,19 +101,53 @@ public class ControlController : MonoBehaviour
         }
     }
 
-    public bool IsAvailable(ControlType controlType)
+    public void SetSelectedControl(float direction)
     {
-        switch (controlType)
+        if (direction == 0)
         {
-            case ControlType.RIGHT:
-                return rightAvailable;
-            case ControlType.LEFT:
-                return leftAvailable;
-            case ControlType.JUMP:
-                return jumpAvailable;
+            return;
         }
 
-        return false;
+        if (direction > 0)
+        {
+            IncreaseSelectedControl();
+        }
+        else
+        {
+            DecreaseSelectedControl();
+        }
+    }
+
+    private void IncreaseSelectedControl()
+    {
+        if (selectedControlInt + 1 == 3)
+        {
+            selectedControlInt = 0;
+        }
+        else
+        {
+            ++selectedControlInt;
+        }
+        if (!availableControl[selectedControlInt])
+        {
+            IncreaseSelectedControl();
+        }
+    }
+
+    private void DecreaseSelectedControl()
+    {
+        if (selectedControlInt - 1 == -1)
+        {
+            selectedControlInt = 2;
+        }
+        else
+        {
+            --selectedControlInt;
+        }
+        if (!availableControl[selectedControlInt])
+        {
+            DecreaseSelectedControl();
+        }
     }
 
     public void LaunchControl(float power)
@@ -129,5 +163,20 @@ public class ControlController : MonoBehaviour
 
         float forceMultiplier = Mathf.Lerp(0.1f, 1, power);
         instantiatedControl.GetComponent<Rigidbody2D>().AddForce(directionToMouse * initialLaunchForce * forceMultiplier);
+    }
+
+    public bool IsAvailable(ControlType controlType)
+    {
+        switch (controlType)
+        {
+            case ControlType.RIGHT:
+                return rightAvailable;
+            case ControlType.LEFT:
+                return leftAvailable;
+            case ControlType.JUMP:
+                return jumpAvailable;
+        }
+
+        return false;
     }
 }
