@@ -40,30 +40,36 @@ public class BodyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(defaultCursor, new Vector2(defaultCursor.width / 2, defaultCursor.height / 2), CursorMode.Auto);
+    }
+
+    private void Update()
+    {
+        if (charging)
+        {
+            Vector2 mousePosition2D = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 chargeBarPosition = mousePosition2D + Vector2.down * 0.5f;
+            Vector2 tramsformPosition2D = transform.position;
+
+            chargeBar.transform.position = new Vector3(chargeBarPosition.x, chargeBarPosition.y, -1);
+            chargingTime += Time.deltaTime;
+            currentCharge = Mathf.Min(chargingTime / maxChargeTime, 1f);
+            Vector2 directionToMouse = (mousePosition2D - tramsformPosition2D).normalized;
+            if (directionToMouse.x > 0)
+            {
+                bodySprite.flipX = false;
+            }
+            else if (directionToMouse.x < 0)
+            {
+                bodySprite.flipX = true;
+            }
+            chargeBar.SetProgress(currentCharge);
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (charging)
-        {
-            chargingTime += Time.deltaTime;
-            currentCharge = Mathf.Min(chargingTime / maxChargeTime, 1f);
-            Vector2 directionToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-            if (directionToMouse.x > 0)
-            {
-                bodySprite.flipX = false;
-                chargeBar.transform.parent.localRotation = Quaternion.identity;
-            }
-            else if (directionToMouse.x < 0)
-            {
-                bodySprite.flipX = true;
-                chargeBar.transform.parent.localRotation = Quaternion.AngleAxis(-180, Vector3.up);
-            }
-            chargeBar.SetProgress(currentCharge);
-        }
-
         jumping = body.velocity.y > 0;
         bodyAnimator.SetBool("Jumping", jumping);
         falling = body.velocity.y < -0.1;
@@ -83,12 +89,10 @@ public class BodyController : MonoBehaviour
         if (movement > 0)
         {
             bodySprite.flipX = false;
-            chargeBar.transform.parent.localRotation = Quaternion.identity;
         }
         else if (movement < 0)
         {
             bodySprite.flipX = true;
-            chargeBar.transform.parent.localRotation = Quaternion.AngleAxis(-180, Vector3.up);
         }
     }
 
@@ -113,7 +117,7 @@ public class BodyController : MonoBehaviour
             SetMovement(0);
             charging = true;
             bodyAnimator.SetBool("Charging", charging);
-            Cursor.SetCursor(chargingCursor, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(chargingCursor, new Vector2(chargingCursor.width / 2, chargingCursor.height / 2), CursorMode.Auto);
             chargeBar.transform.gameObject.SetActive(true);
             chargingTime = 0;
         }
@@ -136,7 +140,7 @@ public class BodyController : MonoBehaviour
         Vector2 transformPosition2D = transform.position;
 
         Vector2 directionToMouse = (mousePosition2D - transformPosition2D).normalized;
-        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(defaultCursor, new Vector2(defaultCursor.width / 2, defaultCursor.height / 2), CursorMode.Auto);
         Vector3 initialLaunchOffset = directionToMouse * launchStartingDistance;
         Vector3 initialLaunchPosition = transform.position + initialLaunchOffset;
 
