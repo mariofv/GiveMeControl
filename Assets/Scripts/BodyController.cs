@@ -79,6 +79,15 @@ public class BodyController : MonoBehaviour
         {
             return;
         }
+        if (!controlController.IsAvailable(ControlController.ControlType.RIGHT) && movement > 0)
+        {
+            return;
+        }
+        if (!controlController.IsAvailable(ControlController.ControlType.LEFT) && movement < 0)
+        {
+            return;
+        }
+
 
         bodyAnimator.SetBool("Walking", movement != 0);
         this.movement = movement;
@@ -95,6 +104,10 @@ public class BodyController : MonoBehaviour
     public void Jump()
     {
         if (charging)
+        {
+            return;
+        }
+        if (!controlController.IsAvailable(ControlController.ControlType.JUMP))
         {
             return;
         }
