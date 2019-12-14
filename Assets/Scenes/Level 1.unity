@@ -1469,6 +1469,16 @@ PrefabInstance:
       propertyPath: chargeBar
       value: 
       objectReference: {fileID: 1616399485}
+    - target: {fileID: 2738832423922869282, guid: 47b64f7256c259246b971a0b59bb5b7d,
+        type: 3}
+      propertyPath: availableControls.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738832423922869282, guid: 47b64f7256c259246b971a0b59bb5b7d,
+        type: 3}
+      propertyPath: availableControls.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47b64f7256c259246b971a0b59bb5b7d, type: 3}
 --- !u!1001 &2866644300846642389
@@ -1662,6 +1672,21 @@ PrefabInstance:
       propertyPath: chargeBar
       value: 
       objectReference: {fileID: 1616399485}
+    - target: {fileID: 1966336399950016962, guid: 5333a92fb843804409e409217ad91eb5,
+        type: 3}
+      propertyPath: availableControls.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966336399950016962, guid: 5333a92fb843804409e409217ad91eb5,
+        type: 3}
+      propertyPath: availableControls.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966336399950016962, guid: 5333a92fb843804409e409217ad91eb5,
+        type: 3}
+      propertyPath: availableControls.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5333a92fb843804409e409217ad91eb5, type: 3}
 --- !u!1001 &6838754864594803415
