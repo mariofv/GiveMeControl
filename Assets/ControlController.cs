@@ -8,7 +8,8 @@ public class ControlController : MonoBehaviour
     {
         RIGHT,
         LEFT,
-        JUMP
+        JUMP,
+        NONE
     }
 
     [Header("Launching Attributes")]
@@ -21,27 +22,41 @@ public class ControlController : MonoBehaviour
     public bool leftAvailable = true;
     public bool jumpAvailable = true;
 
-    [Header("Display Control Attributes")]
+    [SerializeField]
+    private ControlType selectedControl;
+    [SerializeField]
+    private int selectedControlInt = 0;
+    [SerializeField]
+    private List<bool> availableControl;
 
+
+    [Header("Display Control Attributes")]
+    public GameObject rightSelectedControlDisplay;
     public SpriteRenderer rightControlRenderer;
     public Sprite rightAvailableSprite;
     public Sprite rightNotAvailableSprite;
 
     [Space(10)] // 10 pixels of spacing here.
 
+    public GameObject leftSelectedControlDisplay;
     public SpriteRenderer leftControlRenderer;
     public Sprite leftAvailableSprite;
     public Sprite leftNotAvailableSprite;
 
     [Space(10)] // 10 pixels of spacing here.
 
+    public GameObject jumpSelectedControlDisplay;
     public SpriteRenderer jumpControlRenderer;
     public Sprite jumpAvailableSprite;
     public Sprite jumpNotAvailableSprite;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        availableControl.Add(rightAvailable);
+        availableControl.Add(leftAvailable);
+        availableControl.Add(jumpAvailable);
     }
 
     // Update is called once per frame
@@ -50,6 +65,40 @@ public class ControlController : MonoBehaviour
         rightControlRenderer.sprite = rightAvailable ? rightAvailableSprite : rightNotAvailableSprite;
         leftControlRenderer.sprite = leftAvailable ? leftAvailableSprite : leftNotAvailableSprite;
         jumpControlRenderer.sprite = jumpAvailable ? jumpAvailableSprite : jumpNotAvailableSprite;
+
+        availableControl[0] = rightAvailable;
+        availableControl[1] = leftAvailable;
+        availableControl[2] = jumpAvailable;
+
+        if (selectedControlInt == 0)
+        {
+            selectedControl = ControlType.RIGHT;
+        }
+        else if (selectedControlInt == 1)
+        {
+            selectedControl = ControlType.LEFT;
+        }
+        else if (selectedControlInt == 2)
+        {
+            selectedControl = ControlType.JUMP;
+        }
+
+        rightSelectedControlDisplay.SetActive(false);
+        leftSelectedControlDisplay.SetActive(false);
+        jumpSelectedControlDisplay.SetActive(false);
+
+        switch (selectedControl)
+        {
+            case ControlType.RIGHT:
+                rightSelectedControlDisplay.SetActive(true);
+                break;
+            case ControlType.LEFT:
+                leftSelectedControlDisplay.SetActive(true);
+                break;
+            case ControlType.JUMP:
+                jumpSelectedControlDisplay.SetActive(true);
+                break;
+        }
     }
 
     public bool IsAvailable(ControlType controlType)
