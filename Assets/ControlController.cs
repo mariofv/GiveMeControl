@@ -4,22 +4,39 @@ using UnityEngine;
 
 public class ControlController : MonoBehaviour
 {
+    public enum ControlType
+    {
+        RIGHT,
+        LEFT,
+        JUMP
+    }
+
     [Header("Launching Attributes")]
     public GameObject controlPrefab;
     public float launchStartingDistance;
     public float initialLaunchForce = 0;
 
+    [SerializeField]
+    private Dictionary<ControlType, bool> availableControls;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        availableControls = new Dictionary<ControlType, bool>();
+        availableControls.Add(ControlType.RIGHT, true);
+        availableControls.Add(ControlType.LEFT, true);
+        availableControls.Add(ControlType.JUMP, true);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public bool IsAvailable(ControlType controlType)
+    {
+        return availableControls[controlType];
     }
 
     public void LaunchControl(float power)
