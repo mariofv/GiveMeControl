@@ -50,9 +50,19 @@ public class BodyController : MonoBehaviour
         {
             chargingTime += Time.deltaTime;
             currentCharge = Mathf.Min(chargingTime / maxChargeTime, 1f);
+            Vector2 directionToMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+            if (directionToMouse.x > 0)
+            {
+                bodySprite.flipX = false;
+                chargeBar.transform.parent.localRotation = Quaternion.identity;
+            }
+            else if (directionToMouse.x < 0)
+            {
+                bodySprite.flipX = true;
+                chargeBar.transform.parent.localRotation = Quaternion.AngleAxis(-180, Vector3.up);
+            }
             chargeBar.SetProgress(currentCharge);
         }
-
 
         jumping = body.velocity.y > 0;
         bodyAnimator.SetBool("Jumping", jumping);
@@ -102,32 +112,37 @@ public class BodyController : MonoBehaviour
         {
             SetMovement(0);
             charging = true;
+            bodyAnimator.SetBool("Charging", charging);
             Cursor.SetCursor(chargingCursor, Vector2.zero, CursorMode.Auto);
             chargeBar.transform.gameObject.SetActive(true);
             chargingTime = 0;
         }
     }
 
-    public void EndCharging(Vector2 mousePosition)
+    public void EndCharging()
     {
         if (charging)
         {
             charging = false;
+            bodyAnimator.SetBool("Charging", charging);
             chargeBar.transform.gameObject.SetActive(false);
-            LaunchControl(mousePosition);
+            LaunchControl();
         }
     }
 
-    public void LaunchControl(Vector2 mousePosition)
+    public void LaunchControl()
     {
-        Vector2 directionToMouse = (Camera.main.ScreenToWorldPoint(mousePosition) - transform.position).normalized;
+        Vector2 mousePosition2D = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 transformPosition2D = transform.position;
+
+        Vector2 directionToMouse = (mousePosition2D - transformPosition2D).normalized;
         Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
         Vector3 initialLaunchOffset = directionToMouse * launchStartingDistance;
         Vector3 initialLaunchPosition = transform.position + initialLaunchOffset;
 
         GameObject instantiatedControl = Instantiate(controlPrefab, initialLaunchPosition, Quaternion.identity);
 
-        float forceMultiplier = initialLaunchForce * Mathf.Lerp(0.75f, 1, currentCharge);
-        instantiatedControl.GetComponent<Rigidbody2D>().AddForce(directionToMouse * initialLaunchForce * currentCharge);
+        float forceMultiplier = Mathf.Lerp(0.1f, 1, currentCharge);
+        instantiatedControl.GetComponent<Rigidbody2D>().AddForce(directionToMouse * initialLaunchForce * forceMultiplier);
     }
 }

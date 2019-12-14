@@ -423,12 +423,12 @@ PrefabInstance:
     - target: {fileID: 7677889149224111929, guid: 8f85df459dcfd8d48823e2223053a42f,
         type: 3}
       propertyPath: launchStartingDistance
-      value: 2
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7677889149224111929, guid: 8f85df459dcfd8d48823e2223053a42f,
         type: 3}
       propertyPath: initialLaunchForce
-      value: 2500
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f85df459dcfd8d48823e2223053a42f, type: 3}
