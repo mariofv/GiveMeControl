@@ -18,6 +18,13 @@ public class DeletionZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-         Destroy(other.gameObject);
+        if (other.gameObject.tag == "Player")
+        {
+            other.gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
