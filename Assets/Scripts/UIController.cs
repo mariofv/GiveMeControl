@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    [Header("Pause Menu")]
+    public GameObject pauseMenuPanel;
+
     [Header("Level Completed")]
     public GameObject levelCompletedPanel;
     public Text levelCompletedText;
@@ -25,5 +28,10 @@ public class UIController : MonoBehaviour
     {
         levelCompletedText.text = "LEVEL " + level + " COMPLETE!";
         levelCompletedPanel.SetActive(true);
+    }
+
+    public void ShowPauseMenu(bool active)
+    {
+        pauseMenuPanel.SetActive(active);
     }
 }

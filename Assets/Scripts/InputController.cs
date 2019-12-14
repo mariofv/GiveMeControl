@@ -23,5 +23,9 @@ public class InputController : MonoBehaviour
         {
             playerSelectorController.SetPreviousPlayer();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameController.instance.TogglePauseGameMenu();
+        }
     }
 }

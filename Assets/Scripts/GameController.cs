@@ -22,6 +22,9 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private int currentLevel;
+    [SerializeField]
+    private bool gamePaused = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +38,19 @@ public class GameController : MonoBehaviour
         
     }
 
+    public void TogglePauseGameMenu()
+    {
+        TogglePauseGame();
+        uiController.ShowPauseMenu(gamePaused);
+    }
+
     public void LevelCompleted()
     {
         uiController.ShowCompletedLevelScreen(currentLevel);
+    }
+
+    private void TogglePauseGame()
+    {
+        gamePaused = !gamePaused;
     }
 }
