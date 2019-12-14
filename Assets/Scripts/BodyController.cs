@@ -17,6 +17,10 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private bool falling = false;
 
+    [Header("Cursor")]
+    public Texture2D defaultCursor;
+    public Texture2D chargingCursor;
+
     [Header("Charge Bar Attributes")]
     public ChargeBar chargeBar;
     public float maxChargeTime = 0;
@@ -31,7 +35,7 @@ public class BodyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
     }
 
     // Update is called once per frame
@@ -93,6 +97,7 @@ public class BodyController : MonoBehaviour
         {
             SetMovement(0);
             charging = true;
+            Cursor.SetCursor(chargingCursor, Vector2.zero, CursorMode.Auto);
             chargeBar.transform.gameObject.SetActive(true);
             chargingTime = 0;
         }
@@ -103,6 +108,7 @@ public class BodyController : MonoBehaviour
         if (charging)
         {
             charging = false;
+            Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
             chargeBar.transform.gameObject.SetActive(false);
         }
     }
