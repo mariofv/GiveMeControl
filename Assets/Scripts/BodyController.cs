@@ -66,7 +66,7 @@ public class BodyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        jumping = body.velocity.y > 0;
+        jumping = body.velocity.y > 0.1;
         bodyAnimator.SetBool("Jumping", jumping);
         falling = body.velocity.y < -0.1;
         bodyAnimator.SetBool("Falling", falling);
