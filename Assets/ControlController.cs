@@ -172,6 +172,21 @@ public class ControlController : MonoBehaviour
 
         float forceMultiplier = Mathf.Lerp(0.1f, 1, power);
         instantiatedControl.GetComponent<Rigidbody2D>().AddForce(directionToMouse * initialLaunchForce * forceMultiplier);
+
+        SpriteRenderer instantiatedControlRenderer = instantiatedControl.GetComponent<SpriteRenderer>();
+        switch (selectedControl)
+        {
+            case ControlType.RIGHT:
+                instantiatedControlRenderer.sprite = rightAvailableSprite;
+                break;
+            case ControlType.LEFT:
+                instantiatedControlRenderer.sprite = leftAvailableSprite;
+                break;
+            case ControlType.JUMP:
+                instantiatedControlRenderer.sprite = jumpAvailableSprite;
+                break;
+        }
+
     }
 
     public bool IsAvailable(ControlType controlType)
