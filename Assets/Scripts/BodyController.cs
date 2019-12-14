@@ -121,7 +121,7 @@ public class BodyController : MonoBehaviour
 
     public void StartCharging()
     {
-        if (!jumping && !falling)
+        if (!jumping && !falling && controlController.IsSelectedControlAvailable())
         {
             SetMovement(0);
             charging = true;

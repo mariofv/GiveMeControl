@@ -6,10 +6,10 @@ public class ControlController : MonoBehaviour
 {
     public enum ControlType
     {
-        RIGHT,
-        LEFT,
-        JUMP,
-        NONE
+        RIGHT = 0,
+        LEFT = 1,
+        JUMP = 2,
+        NONE = -1
     }
 
     [Header("Launching Attributes")]
@@ -18,17 +18,11 @@ public class ControlController : MonoBehaviour
     public float initialLaunchForce = 0;
 
     [Header("Control Attributes")]
-    public bool rightAvailable = true;
-    public bool leftAvailable = true;
-    public bool jumpAvailable = true;
-
+    public List<bool> availableControls;
     [SerializeField]
     private ControlType selectedControl;
     [SerializeField]
-    private int selectedControlInt = 0;
-    [SerializeField]
-    private List<bool> availableControl;
-
+    private int selectedControlInt;
 
     [Header("Display Control Attributes")]
     public GameObject rightSelectedControlDisplay;
@@ -54,9 +48,6 @@ public class ControlController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        availableControl.Add(rightAvailable);
-        availableControl.Add(leftAvailable);
-        availableControl.Add(jumpAvailable);
     }
 
     // Update is called once per frame
@@ -68,33 +59,29 @@ public class ControlController : MonoBehaviour
 
     private void UpdateAvailableControls()
     {
-        rightControlRenderer.sprite = rightAvailable ? rightAvailableSprite : rightNotAvailableSprite;
-        leftControlRenderer.sprite = leftAvailable ? leftAvailableSprite : leftNotAvailableSprite;
-        jumpControlRenderer.sprite = jumpAvailable ? jumpAvailableSprite : jumpNotAvailableSprite;
+        rightControlRenderer.sprite = availableControls[(int)ControlType.RIGHT] ? rightAvailableSprite : rightNotAvailableSprite;
+        leftControlRenderer.sprite = availableControls[(int)ControlType.LEFT] ? leftAvailableSprite : leftNotAvailableSprite;
+        jumpControlRenderer.sprite = availableControls[(int)ControlType.JUMP] ? jumpAvailableSprite : jumpNotAvailableSprite;
+    }
 
-        availableControl[0] = rightAvailable;
-        availableControl[1] = leftAvailable;
-        availableControl[2] = jumpAvailable;
+    public bool IsThereAvailableControl()
+    {
+        return availableControls.Contains(true);
     }
 
     private void UpdateSelectedControl()
     {
-        if (selectedControlInt == 0)
-        {
-            selectedControl = ControlType.RIGHT;
-        }
-        else if (selectedControlInt == 1)
-        {
-            selectedControl = ControlType.LEFT;
-        }
-        else if (selectedControlInt == 2)
-        {
-            selectedControl = ControlType.JUMP;
-        }
+
+        selectedControl = IntToControlType(selectedControlInt);
 
         rightSelectedControlDisplay.SetActive(false);
         leftSelectedControlDisplay.SetActive(false);
         jumpSelectedControlDisplay.SetActive(false);
+
+        if (!IsThereAvailableControl() || !IsSelectedControlAvailable())
+        {
+            return;
+        }
 
         switch (selectedControl)
         {
@@ -112,7 +99,7 @@ public class ControlController : MonoBehaviour
 
     public void SetSelectedControl(float direction)
     {
-        if (direction == 0)
+        if (direction == 0 || !IsThereAvailableControl())
         {
             return;
         }
@@ -137,7 +124,7 @@ public class ControlController : MonoBehaviour
         {
             ++selectedControlInt;
         }
-        if (!availableControl[selectedControlInt])
+        if (!availableControls[selectedControlInt])
         {
             IncreaseSelectedControl();
         }
@@ -153,7 +140,7 @@ public class ControlController : MonoBehaviour
         {
             --selectedControlInt;
         }
-        if (!availableControl[selectedControlInt])
+        if (!availableControls[selectedControlInt])
         {
             DecreaseSelectedControl();
         }
@@ -168,39 +155,51 @@ public class ControlController : MonoBehaviour
         Vector3 initialLaunchOffset = directionToMouse * launchStartingDistance;
         Vector3 initialLaunchPosition = transform.position + initialLaunchOffset;
 
-        GameObject instantiatedControl = Instantiate(controlPrefab, initialLaunchPosition, Quaternion.identity);
+        GameObject instantiatedControlGameObject = Instantiate(controlPrefab, initialLaunchPosition, Quaternion.identity);
 
         float forceMultiplier = Mathf.Lerp(0.1f, 1, power);
-        instantiatedControl.GetComponent<Rigidbody2D>().AddForce(directionToMouse * initialLaunchForce * forceMultiplier);
+        instantiatedControlGameObject.GetComponent<Rigidbody2D>().AddForce(directionToMouse * initialLaunchForce * forceMultiplier);
 
-        SpriteRenderer instantiatedControlRenderer = instantiatedControl.GetComponent<SpriteRenderer>();
-        switch (selectedControl)
-        {
-            case ControlType.RIGHT:
-                instantiatedControlRenderer.sprite = rightAvailableSprite;
-                break;
-            case ControlType.LEFT:
-                instantiatedControlRenderer.sprite = leftAvailableSprite;
-                break;
-            case ControlType.JUMP:
-                instantiatedControlRenderer.sprite = jumpAvailableSprite;
-                break;
-        }
+        Control instantiatedControl = instantiatedControlGameObject.GetComponent<Control>();
+        instantiatedControl.SetControlType(selectedControl);
 
+        LoseControl(selectedControl);
+    }
+
+    private void LoseControl(ControlType control)
+    {
+        availableControls[(int)control] = false;
     }
 
     public bool IsAvailable(ControlType controlType)
     {
-        switch (controlType)
+        return availableControls[(int)controlType];
+    }
+
+    public bool IsSelectedControlAvailable()
+    {
+        return availableControls[(int)selectedControl];
+    }
+
+    private ControlType IntToControlType(int intControlType)
+    {
+        if (intControlType == -1)
         {
-            case ControlType.RIGHT:
-                return rightAvailable;
-            case ControlType.LEFT:
-                return leftAvailable;
-            case ControlType.JUMP:
-                return jumpAvailable;
+            return ControlType.NONE;
+        }
+        else if (intControlType == 0)
+        {
+            return ControlType.RIGHT;
+        }
+        else if (intControlType == 1)
+        {
+            return ControlType.LEFT;
+        }
+        else if (intControlType == 2)
+        {
+            return ControlType.JUMP;
         }
 
-        return false;
+        return ControlType.NONE;
     }
 }

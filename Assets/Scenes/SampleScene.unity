@@ -531,12 +531,9 @@ MonoBehaviour:
     type: 3}
   launchStartingDistance: 0.75
   initialLaunchForce: 1000
-  rightAvailable: 1
-  leftAvailable: 1
-  jumpAvailable: 1
+  availableControls: 010101
   selectedControl: 0
   selectedControlInt: 0
-  availableControl: 
   rightSelectedControlDisplay: {fileID: 718045761}
   rightControlRenderer: {fileID: 1450882731}
   rightAvailableSprite: {fileID: 21300000, guid: d8f88004b9a6c9d4fa90f00d7338544f,
