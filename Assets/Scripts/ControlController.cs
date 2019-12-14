@@ -54,6 +54,11 @@ public class ControlController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameController.instance.IsGamePaused())
+        {
+            return;
+        }
+
         UpdateAvailableControls();
         UpdateSelectedControl();
     }

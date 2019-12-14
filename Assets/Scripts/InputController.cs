@@ -15,6 +15,16 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameController.instance.TogglePauseGameMenu();
+        }
+
+        if (GameController.instance.IsGamePaused())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             playerSelectorController.SetNextPlayer();
@@ -23,9 +33,6 @@ public class InputController : MonoBehaviour
         {
             playerSelectorController.SetPreviousPlayer();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameController.instance.TogglePauseGameMenu();
-        }
+        
     }
 }

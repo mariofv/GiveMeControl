@@ -52,5 +52,11 @@ public class GameController : MonoBehaviour
     private void TogglePauseGame()
     {
         gamePaused = !gamePaused;
+        Time.timeScale = gamePaused ? 0 : 1;
+    }
+
+    public bool IsGamePaused()
+    {
+        return gamePaused;
     }
 }

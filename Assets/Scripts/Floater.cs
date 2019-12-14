@@ -16,6 +16,11 @@ public class Floater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameController.instance.IsGamePaused())
+        {
+            return;
+        }
+
         transform.position = transform.parent.position + Vector3.up * (Mathf.Sin(Time.time * floatSpeed) * floatAmplitude + 0.75f);
     }
 }

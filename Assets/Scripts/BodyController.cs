@@ -41,6 +41,11 @@ public class BodyController : MonoBehaviour
 
     private void Update()
     {
+        if (GameController.instance.IsGamePaused())
+        {
+            return;
+        }
+
         if (charging)
         {
             Vector2 mousePosition2D = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -66,6 +71,11 @@ public class BodyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (GameController.instance.IsGamePaused())
+        {
+            return;
+        }
+
         jumping = body.velocity.y > 0.1;
         bodyAnimator.SetBool("Jumping", jumping);
         falling = body.velocity.y < -0.1;
