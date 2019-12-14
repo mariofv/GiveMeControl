@@ -160,6 +160,11 @@ public class ControlController : MonoBehaviour
         LoseControl(selectedControl);
     }
 
+    public void GiveControl(ControlType control)
+    {
+        availableControls[(int)control] = true;
+    }
+
     private void LoseControl(ControlType control)
     {
         availableControls[(int)control] = false;

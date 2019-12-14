@@ -42,4 +42,13 @@ public class Control : MonoBehaviour
                 break;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<ControlController>().GiveControl(controlType);
+            Destroy(gameObject);
+        }
+    }
 }
