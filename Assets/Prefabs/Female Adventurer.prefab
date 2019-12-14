@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1966336401226273162}
   - component: {fileID: 1966336399950016962}
   - component: {fileID: 3630327691958834105}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Female Adventurer
   m_TagString: Player
   m_Icon: {fileID: 0}
