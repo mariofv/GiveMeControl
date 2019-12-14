@@ -21,6 +21,15 @@ public class InputController : MonoBehaviour
         {
             bodyController.Jump();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            bodyController.StartCharging();
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            bodyController.EndCharging();
+        }
+
     }
 }
