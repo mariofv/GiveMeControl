@@ -16,16 +16,13 @@ public class ControlController : MonoBehaviour
     public float launchStartingDistance;
     public float initialLaunchForce = 0;
 
-    [SerializeField]
-    private Dictionary<ControlType, bool> availableControls;
-
+    public bool rightAvailable = true;
+    public bool leftAvailable = true;
+    public bool jumpAvailable = true;
+    
     // Start is called before the first frame update
     void Start()
     {
-        availableControls = new Dictionary<ControlType, bool>();
-        availableControls.Add(ControlType.RIGHT, true);
-        availableControls.Add(ControlType.LEFT, true);
-        availableControls.Add(ControlType.JUMP, true);
     }
 
     // Update is called once per frame
@@ -36,7 +33,17 @@ public class ControlController : MonoBehaviour
 
     public bool IsAvailable(ControlType controlType)
     {
-        return availableControls[controlType];
+        switch (controlType)
+        {
+            case ControlType.RIGHT:
+                return rightAvailable;
+            case ControlType.LEFT:
+                return leftAvailable;
+            case ControlType.JUMP:
+                return jumpAvailable;
+        }
+
+        return false;
     }
 
     public void LaunchControl(float power)
