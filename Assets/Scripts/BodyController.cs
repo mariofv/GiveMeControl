@@ -13,9 +13,15 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private float movement = 0;
     [SerializeField]
+    private float lastMovement = 0;
+    [SerializeField]
     private bool jumping = false;
     [SerializeField]
     private bool falling = false;
+
+    [Header("Audio Sources")]
+    public AudioSource stepsAudioSource;
+    public AudioSource jumpAudioSource;
 
     [Header("Cursor")]
     public Texture2D defaultCursor;
@@ -101,6 +107,7 @@ public class BodyController : MonoBehaviour
 
         bodyAnimator.SetBool("Walking", movement != 0);
         this.movement = movement;
+        UpdateStepSound();
         if (movement > 0)
         {
             bodySprite.flipX = false;
@@ -108,6 +115,28 @@ public class BodyController : MonoBehaviour
         else if (movement < 0)
         {
             bodySprite.flipX = true;
+        }
+
+        lastMovement = movement;
+    }
+
+    private void UpdateStepSound()
+    {
+        if (jumping || falling)
+        {
+            stepsAudioSource.Stop();
+        }
+
+        if (lastMovement - movement != 0)
+        {
+            if (movement == 0)
+            {
+                stepsAudioSource.Stop();
+            }
+            else
+            {
+                stepsAudioSource.Play();
+            }
         }
     }
 
