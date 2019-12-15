@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
         uiController.ShowCompletedLevelScreen(currentLevel);
     }
 
-    private void LoadLevel(int level)
+    public void LoadLevel(int level)
     {
         currentLevel = level;
         SceneManager.LoadScene("Level " + level);
@@ -76,5 +76,10 @@ public class GameController : MonoBehaviour
     public bool IsGamePaused()
     {
         return gamePaused;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
