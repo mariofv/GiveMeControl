@@ -25,6 +25,9 @@ public class ControlController : MonoBehaviour
     [SerializeField]
     private int selectedControlInt;
 
+    [Header("Audio Sources")]
+    public AudioSource changeSelectedControlSource;
+
     [Header("Display Control Attributes")]
     public GameObject rightSelectedControlDisplay;
     public SpriteRenderer rightControlRenderer;
@@ -104,6 +107,8 @@ public class ControlController : MonoBehaviour
         {
             return;
         }
+
+        changeSelectedControlSource.Play();
 
         if (direction > 0)
         {
