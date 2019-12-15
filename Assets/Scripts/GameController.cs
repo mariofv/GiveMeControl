@@ -58,13 +58,13 @@ public class GameController : MonoBehaviour
 
     public void LoadLevel(int level)
     {
-        currentLevel = level;
-        SceneManager.LoadScene("Level " + level);
-
         if (gamePaused)
         {
             TogglePauseGame();
         }
+        currentLevel = level;
+        SceneManager.LoadScene("Level " + level);
+
     }
 
     public void TogglePauseGameMenu()
@@ -86,7 +86,10 @@ public class GameController : MonoBehaviour
 
     public void ExitToMainMenu()
     {
-        TogglePauseGame();
+        if (gamePaused)
+        {
+            TogglePauseGame();
+        }
         SceneManager.LoadScene("Main Menu");
     }
 

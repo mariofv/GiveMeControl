@@ -711,8 +711,8 @@ RectTransform:
   - {fileID: 240888337}
   - {fileID: 987263187}
   - {fileID: 8510075011989619929}
-  - {fileID: 2094107401}
   - {fileID: 749378509}
+  - {fileID: 2094107401}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3069,7 +3069,7 @@ RectTransform:
   m_Children:
   - {fileID: 485098995}
   m_Father: {fileID: 243252632}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7935,7 +7935,7 @@ PrefabInstance:
     - target: {fileID: 8510075012688800252, guid: 3287db6ce80ed17409bbff132bfafb29,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8510075012688800252, guid: 3287db6ce80ed17409bbff132bfafb29,
         type: 3}
@@ -8483,12 +8483,17 @@ PrefabInstance:
     - target: {fileID: 2866644300980099665, guid: f9484f9ccd789cf488f8c42765909cfc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadNextLevel
+      value: ExitToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 2866644300980099665, guid: f9484f9ccd789cf488f8c42765909cfc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866644301761572473, guid: f9484f9ccd789cf488f8c42765909cfc,
+        type: 3}
+      propertyPath: m_Text
+      value: GO TO MENU
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9484f9ccd789cf488f8c42765909cfc, type: 3}
