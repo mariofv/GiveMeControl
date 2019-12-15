@@ -27,6 +27,7 @@ public class ControlController : MonoBehaviour
 
     [Header("Audio Sources")]
     public AudioSource changeSelectedControlSource;
+    public AudioSource obtainedControlSource;
 
     [Header("Display Control Attributes")]
     public GameObject rightSelectedControlDisplay;
@@ -175,6 +176,7 @@ public class ControlController : MonoBehaviour
     public void GiveControl(ControlType control)
     {
         availableControls[(int)control] = true;
+        obtainedControlSource.Play();
     }
 
     private void LoseControl(ControlType control)
