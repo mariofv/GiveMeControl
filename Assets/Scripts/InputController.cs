@@ -32,11 +32,11 @@ public class InputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            playerSelectorController.SetNextPlayer();
+            playerSelectorController.SetPreviousPlayer();
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            playerSelectorController.SetPreviousPlayer();
+            playerSelectorController.SetNextPlayer();
         }
         
     }

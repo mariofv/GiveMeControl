@@ -141,8 +141,13 @@ MonoBehaviour:
   movementSpeed: 5
   jumpSpeed: 10
   movement: 0
+  lastMovement: 0
   jumping: 0
   falling: 0
+  wasFalling: 0
+  stepsAudioSource: {fileID: 0}
+  jumpAudioSource: {fileID: 0}
+  launchAudioSource: {fileID: 0}
   defaultCursor: {fileID: 2800000, guid: 62080827e688f3445b014d3d65f3dba8, type: 3}
   chargingCursor: {fileID: 2800000, guid: e4ca83a3a0b254e4fa5ce7e209bb3bf0, type: 3}
   chargeBar: {fileID: 0}
@@ -213,11 +218,13 @@ MonoBehaviour:
   adventurerController: {fileID: 8726980436217939189}
   controlPrefab: {fileID: 1024685279067286794, guid: 01f3c39d2fb259444a3a0f33a8f3d3b1,
     type: 3}
-  launchStartingDistance: 0.75
+  launchStartingDistance: 0.8
   initialLaunchForce: 1000
   availableControls: 010101
   selectedControl: 0
   selectedControlInt: 0
+  changeSelectedControlSource: {fileID: 0}
+  obtainedControlSource: {fileID: 0}
   rightSelectedControlDisplay: {fileID: 2738832423599860582}
   rightControlRenderer: {fileID: 2738832425400131468}
   rightAvailableSprite: {fileID: 21300000, guid: d8f88004b9a6c9d4fa90f00d7338544f,
