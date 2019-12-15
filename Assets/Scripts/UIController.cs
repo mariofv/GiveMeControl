@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
 {
     [Header("Pause Menu")]
     public GameObject pauseMenuPanel;
+    public AudioSource pauseMenuAudio;
 
     [Header("Controls")]
     public GameObject controlsPanel;
@@ -38,7 +39,11 @@ public class UIController : MonoBehaviour
     public void ShowPauseMenu(bool active)
     {
         pauseMenuPanel.SetActive(active);
-        if (!active)
+        if (active)
+        {
+            pauseMenuAudio.Play();
+        }
+        else
         {
             controlsPanel.SetActive(false);
         }
