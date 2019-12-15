@@ -24,6 +24,7 @@ public class BodyController : MonoBehaviour
     [Header("Audio Sources")]
     public AudioSource stepsAudioSource;
     public AudioSource jumpAudioSource;
+    public AudioSource launchAudioSource;
 
     [Header("Cursor")]
     public Texture2D defaultCursor;
@@ -171,6 +172,7 @@ public class BodyController : MonoBehaviour
             Cursor.SetCursor(chargingCursor, new Vector2(chargingCursor.width / 2, chargingCursor.height / 2), CursorMode.Auto);
             chargeBar.transform.gameObject.SetActive(true);
             chargingTime = 0;
+            launchAudioSource.Play();
         }
     }
 
@@ -178,6 +180,7 @@ public class BodyController : MonoBehaviour
     {
         if (charging)
         {
+            launchAudioSource.Stop();
             charging = false;
             bodyAnimator.SetBool("Charging", charging);
             chargeBar.transform.gameObject.SetActive(false);
