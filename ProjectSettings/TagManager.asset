@@ -44,9 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Indicators
+    uniqueID: 533514561
+    locked: 0
   - name: UI
     uniqueID: 740488639
     locked: 0
-  - name: Buttons
+  - name: UI Buttons
     uniqueID: 3604890079
     locked: 0
