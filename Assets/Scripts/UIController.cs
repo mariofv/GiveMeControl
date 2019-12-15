@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     [Header("Level Completed")]
     public GameObject levelCompletedPanel;
     public Text levelCompletedText;
+    public AudioSource victorySound;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class UIController : MonoBehaviour
     {
         levelCompletedText.text = "LEVEL " + level + " COMPLETE!";
         levelCompletedPanel.SetActive(true);
+        victorySound.Play();
     }
 
     public void ShowPauseMenu(bool active)
