@@ -18,6 +18,8 @@ public class BodyController : MonoBehaviour
     private bool jumping = false;
     [SerializeField]
     private bool falling = false;
+    [SerializeField]
+    private bool wasFalling = false;
 
     [Header("Audio Sources")]
     public AudioSource stepsAudioSource;
@@ -104,9 +106,8 @@ public class BodyController : MonoBehaviour
             return;
         }
 
-
-        bodyAnimator.SetBool("Walking", movement != 0);
         this.movement = movement;
+        bodyAnimator.SetBool("Walking", movement != 0);
         UpdateStepSound();
         if (movement > 0)
         {
@@ -118,6 +119,7 @@ public class BodyController : MonoBehaviour
         }
 
         lastMovement = movement;
+        wasFalling = falling;
     }
 
     private void UpdateStepSound()
@@ -127,7 +129,7 @@ public class BodyController : MonoBehaviour
             stepsAudioSource.Stop();
         }
 
-        if (lastMovement - movement != 0)
+        if ((!(jumping || falling) && lastMovement - movement != 0) || wasFalling && !falling)
         {
             if (movement == 0)
             {
@@ -153,6 +155,7 @@ public class BodyController : MonoBehaviour
 
         if (body.velocity.y == 0)
         {
+            jumpAudioSource.Play();
             jumping = true;
             body.velocity += Vector2.up * jumpSpeed;
         }
