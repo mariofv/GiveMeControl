@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSelectorController : MonoBehaviour
 {
     public List<AdventurerController> adventurerControllers;
+    public AudioSource selectPlayerAudio;
 
     [SerializeField]
     private int currentSelectedPlayer = 0;
@@ -32,6 +33,7 @@ public class PlayerSelectorController : MonoBehaviour
 
     public void SetPreviousPlayer()
     {
+        selectPlayerAudio.Play();
         if (currentSelectedPlayer - 1 == -1)
         {
             currentSelectedPlayer = adventurerControllers.Count - 1;
@@ -44,6 +46,7 @@ public class PlayerSelectorController : MonoBehaviour
 
     public void SetNextPlayer()
     {
+        selectPlayerAudio.Play();
         if (currentSelectedPlayer + 1 == adventurerControllers.Count)
         {
             currentSelectedPlayer = 0;
