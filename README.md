@@ -1,4 +1,4 @@
-<h1 align="center" style="border-bottom: none;">Give Me Control</h1>
+<h1 align="center" style="border-bottom: none;"><a href="https://stranded-cosmonaut.itch.io/give-me-control">Give Me Control</a></h1>
 <h3 align="center">C# 2D puzzle game where you have to give controls. Literally.</h3>
 <p align="center">
   <a href="https://github.com/mariofv/GiveMeControl/releases/">
@@ -22,7 +22,7 @@
 
 Give Me Control is a puzzle game where characters don't have basic controls unlocked by default. You will need to throw the controls between characters in order to advance across 6 different levels.
 
-This game was developed for the Yogscast Game Jam 2019 over a weekend. Also it was the first time I participated in a Game Jam, I hope you enjoy it!
+This game was developed for the [Yogscast Game Jam 2019](https://itch.io/jam/yogscast-game-jam) over a weekend. Also it was the first time I participated in a Game Jam, I hope you enjoy it!
 
 ## Installation
 
